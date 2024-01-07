@@ -7,6 +7,8 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="./../public/styles.css" />
     <script defer async src="./../public/player.js"></script>
+    <script defer async src="./../public/session.js"></script>
+    <script defer async src="./../public/loops.js"></script>
     <link rel="manifest" href="/repeater/manifest.json" >
     <title>jprokay</title>
   </head>
@@ -20,6 +22,7 @@
       </nav>
     </header>
     <main>
+      <select id="saved-loops"><option value="__new" selected>Create new Loop</option></select>
       <div id="player"></div>
       <div id="button-group">
         <button name="play" id="play-button" type="button">
@@ -39,7 +42,7 @@
           </svg>
         </button>
       </div>
-      <form>
+      <form method="post" action="/loops">
         <label for="video-url">
           <span>Video URL: </span>
           <input type="url" id="video-url" name="youtube-video-url" required />
@@ -47,27 +50,25 @@
         <label>
           <span>Start Loop: </span>
           <div class="duration-inputs">
-            <input type="number" inputmode="numeric" id="start-minute" min="0" value="0"/>
+            <input type="number" inputmode="numeric" id="start-minute" name="start-minute" min="0" value="0"/>
             <span>:</span>
-            <input type="number" inputmode="numeric" id="start-second" min="0" max="59" value="0"/>
+            <input type="number" inputmode="numeric" id="start-second" name="start-second" min="0" max="59" value="0"/>
           </div>
         </label>
-        <label>
           <span>End Loop: </span>
           <div class="duration-inputs">
-            <input type="number" inputmode="numeric" id="end-minute" min="0" value="0"/>
+            <input type="number" inputmode="numeric" id="end-minute" name="end-minute" min="0" value="0"/>
             <span>:</span>
-            <input type="number" inputmode="numeric" id="end-second" min="0" max="59" value="0"/>
+            <input type="number" inputmode="numeric" id="end-second" name="end-second" min="0" max="59" value="0"/>
           </div>
-        </label>
         <label for="playback-rate">
           <span>Playback Rate: </span>
-          <input type="range" id="playback-rate" name="playback rate" value="100" min="25" max="150" step="5" />
+          <input type="range" id="playback-rate" name="playback-rate" value="100" min="25" max="150" step="5" />
           <span><output id="playback-rate-value">100</output>%</span>
         </label>
         <label form="loop-name">
           <span>Name: </span>
-          <input type="text" id="loop-name" name="loop name" placeholder="Solo" />
+          <input type="text" id="loop-name" name="loop-name" placeholder="Solo" required />
         </label>
         <button type="submit">Save</button>
       </form>
