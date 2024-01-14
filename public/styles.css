@@ -169,4 +169,8 @@ footer {
   #profile {
     border: 1px solid black;
   }
+
+  path {
+    fill: white;
+  }
 }
