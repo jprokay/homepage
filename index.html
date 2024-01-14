@@ -4,28 +4,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/styles.css" />
-        <link rel="manifest" href="/manifest.json" >
-
     <title>jprokay</title>
   </head>
   <body>
-    <header>
+    <header class="gentle-flex">
       <nav aria-label="Primary">
         <ul>
-          <li><a aria-current="page" href="/">About</a></li>
-          <li><a href="repeater/index.html">Apps</a></li>
+          <li><a aria-current="page" class="mono" href="/">jprokay.com</a></li>
         </ul>
       </nav>
     </header>
+    <div class="left-side"></div>
     <main>
-      <article class="resume">
-        <h1>Julian Prokay</h1>
+      <article class="flex-column">
         <section aria-labelledby="about-heading">
-          <h2 id="about-heading">About Me</h2>
-          <p>Foobar</p>
+          <div class="spaced-flex">
+            <div>
+              <h2 id="about-heading">Julian Prokay</h2>
+              <p>CTO @ <a href="https://truebuiltsoftware.com">TrueBuilt Software</a></p>
+              <div class="flex-row align-center gap-sm">
+                <a href="https://www.linkedin.com/in/julian-prokay/">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM349.3 793.7H230.6V411.9h118.7v381.8zm-59.3-434a68.8 68.8 0 1 1 68.8-68.8c-.1 38-30.9 68.8-68.8 68.8zm503.7 434H675.1V608c0-44.3-.8-101.2-61.7-101.2-61.7 0-71.2 48.2-71.2 98v188.9H423.7V411.9h113.8v52.2h1.6c15.8-30 54.5-61.7 112.3-61.7 120.2 0 142.3 79.1 142.3 181.9v209.4z">
+                    </path>
+                  </svg>
+                </a>
+                <a href="https://bandcamp.com/jbeard">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg"><path d="M256,8C119,8,8,119,8,256S119,504,256,504,504,393,504,256,393,8,256,8Zm48.2,326.1h-181L207.9,178h181Z"></path></svg></a>
+              </div>
+            </div>
+            <img id="profile" class="heavy-gray"  src="public/me.jpg" alt="Professional photo of Julian" height="2251" width="2250"/>
+          </div>
+        </section>
+        <section aria-labelledby="work-history-heading">
+          <h2 id="work-history-heading">Work History</h2>
+          <section aria-labelledby="truebuilt-software-heading">
+            <h3 id="truebuilt-software-heading">TrueBuilt Software [Jun. 2022 - Current]</h3>
+            <p class="job-title">CTO & Cofounder</p>
+            <ul class="work-details">
+              <li>Leading a team of 3 engineers to build the new industry standard software for preconstruction</li>
+              <li>Tech: NextJS | AWS | YOLOv8 | OTEL | Terraform</li>
+            </ul>
+          </section>
+          <section aria-labelledby="assistalong-software-heading">
+            <h3 id="assistalong-software-heading">Assistalong [Mar. 2021 - Mar. 2022]</h3>
+            <p class="job-title">Founding Software Engineer</p>
+            <ul class="work-details">
+              <li>Architected and designed a Ruby on Rails API server feeding multiple NextJS applications. A user could link their Shopify store and generate mobile-friendly webpages for select items</li>
+              <li>Added an automatic reminder system via Twilio and Stripe to support re-purchasing an item via SMS</li>
+              <li>Tech: NextJS | Ruby on Rails | AWS | Shopify</li>
+            </ul>
+          </section>
+          <section aria-labelledby="workday-software-heading">
+            <h3 id="workday-software-heading">Workday [Feb. 2015 - Feb. 2022]</h3>
+            <p class="job-title">Principal Software Engineer - Interal Tools</p>
+            <ul class="work-details">
+              <li>Refactored an internal, legacy Scala application responsible for parsing and storing 5+ terabytes of log files per week, migrated the database infrastructure from on-premise to Mongo Atlas, and increased uptime to 99%</li>
+              <li>
+                Created a full-stack Ruby on Rails application to streamline the testing of the Workday application via parallel test execution across a pool of thousands of Amazon EC2 instances saving an individual developer hundreds of hours a month of test time
+              </li>
+              <li>Tech: Ruby on Rails | Scala | MongoDB</li>
+            </ul>
+          </section>
         </section>
       </article>
     </main>
+    <div class="right-side"></div>
+    <footer></footer>
   </body>
 </html>
