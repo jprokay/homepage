@@ -20,7 +20,13 @@ a {
   border-left: 1px solid black;
 
   li + li {
-    margin-top: 1.2rem;
+    margin-top: 2rem;
+  }
+}
+
+article {
+  section:first-child {
+    border-bottom: 1px solid black;
   }
 }
 
@@ -43,6 +49,14 @@ body {
 
 h2 {
   margin-top: 0px;
+}
+
+.margin-top-lg {
+  margin-top: 1.4rem
+}
+
+.margin-bottom-lg {
+  margin-bottom: 1.4rem
 }
 
 nav {
@@ -154,7 +168,7 @@ footer {
 
 @media (prefers-color-scheme: dark) {
   a {
-    color: white
+    color: white;
   }
 
   body {
@@ -172,5 +186,11 @@ footer {
 
   path {
     fill: white;
+  }
+
+  article {
+    section:first-child {
+    border-bottom: 1px solid white;
+    }
   }
 }
