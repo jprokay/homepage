@@ -36,6 +36,18 @@ section {
   }
 }
 
+section.work-history > div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section.work-history > div > h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 body {
   display: grid;
   grid-template: auto 1fr auto / auto 1fr auto;
