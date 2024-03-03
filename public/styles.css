@@ -36,6 +36,15 @@ section {
   }
 }
 
+section.history > section {
+  animation: 3s ease-out fadeIn;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 section.work-history > div {
   display: flex;
   flex-flow: row wrap;
@@ -92,6 +101,14 @@ svg {
   width: 2.5rem;
 }
 
+path {
+  transition:
+    fill 1s ease-out
+}
+
+a:hover > svg > path {
+  fill: cornflowerblue;
+}
 
 .heavy-gray {
   filter: grayscale(70%)
@@ -198,6 +215,10 @@ footer {
 
   path {
     fill: white;
+  }
+
+  a:hover > svg > path {
+    fill: crimson;
   }
 
   article {
