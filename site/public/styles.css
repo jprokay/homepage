@@ -1,16 +1,89 @@
 :root {
   --mono-font: "Red Hat Mono", "Courier New", Courier, monospace;
-  --default-font: "Red Hat Mono", "Courier New", Courier, monospace;
+  --default-font: "Titillium Web", "Courier New", Courier, monospace;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+
+  li:not(:last-child)::after {
+    content: '|';
+    margin: 0 1rem;
+  }
+
+  li a {
+    text-decoration: none;
+  }
+}
+
+a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+sub::before {
+  content: '['
+}
+
+sub::after {
+  content: ']'
+}
+
+pre {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0;
+}
+
+.blog {
+  margin-top: 0.5rem;
+
+  h3 {
+    font-family: var(--mono-font);
+  }
+
+  p {
+
+    font-family: var(--default-font);
+  }
+
+  blockquote {
+    border-left: 2px solid white;
+
+    padding-left: 16px;
+    margin-left: 0;
+  }
+}
+
+.blog-index {
+  list-style-type: none;
+  position: sticky;
+  top: 20vh;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  margin-right: 8px;
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 nav ul li {
-  list-style-type: none;
+  display: inline-block;
+
 }
 
 a {
   color: black;
-  text-decoration: none;
+  text-decoration: underline;
 }
+
 .no-list-style {
   list-style-type: none;
 }
@@ -19,7 +92,7 @@ a {
   list-style-type: none;
   border-left: 1px solid black;
 
-  li + li {
+  li+li {
     margin-top: 2rem;
   }
 }
@@ -31,45 +104,54 @@ article {
 }
 
 section {
-  section + section {
+  section+section {
     margin-top: 6rem;
   }
 }
 
-section.history > section {
-  animation: 3s ease-out fadeIn;
-}
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
-section.work-history > div {
+section.work-history>div {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
 }
 
-section.work-history > div > h3 {
+section.work-history>div>h3 {
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
 body {
   display: grid;
+  word-wrap: normal;
   grid-template: auto 1fr auto / auto 1fr auto;
   font-family: var(--default-font);
-  font-size: 2rem;
+  font-size: 1.2rem;
 
-  footer {
+  footer#bottom-footer {
     height: 10vh
   }
 }
 
+main {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 h2 {
   margin-top: 0px;
+  margin-bottom: 4px;
 }
 
 .margin-top-lg {
@@ -106,7 +188,7 @@ path {
     fill 1s ease-out
 }
 
-a:hover > svg > path {
+a:hover>svg>path {
   fill: cornflowerblue;
 }
 
@@ -115,8 +197,8 @@ a:hover > svg > path {
 }
 
 #profile {
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   border-radius: 900px;
   border: 1px solid white;
 }
@@ -195,7 +277,30 @@ footer {
   grid-column: 1 / 4;
 }
 
+#blog-heading {
+  border-bottom: 1px solid white;
+}
+
+pre {
+  code {
+    span {
+      text-wrap: pretty;
+    }
+  }
+}
+
 @media (prefers-color-scheme: dark) {
+
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+
   a {
     color: white;
   }
@@ -209,6 +314,10 @@ footer {
     border-left: 1px solid white;
   }
 
+  #blog-heading {
+    border-bottom: 1px solid black;
+  }
+
   #profile {
     border: 1px solid black;
   }
@@ -217,7 +326,7 @@ footer {
     fill: white;
   }
 
-  a:hover > svg > path {
+  a:hover>svg>path {
     fill: crimson;
   }
 
@@ -225,5 +334,27 @@ footer {
     section:first-child {
       border-bottom: 1px solid white;
     }
+  }
+
+  .blog {
+    blockquote {
+      border-left: 1px solid white;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  ul.blog-index {
+    display: none;
+    margin: 0px;
+  }
+
+  .work-details {
+    border: none;
+    padding: 0;
+  }
+
+  .spaced-flex {
+    flex-wrap: wrap;
   }
 }

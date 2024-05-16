@@ -1,0 +1,10 @@
+:{$PORT}
+
+@extensions path *.css 
+header @extensions ?Cache-Control max-age=86400
+
+root * /srv
+try_files {path}.html
+encode zstd gzip
+templates
+file_server 
