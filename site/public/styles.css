@@ -357,4 +357,31 @@ pre {
   .spaced-flex {
     flex-wrap: wrap;
   }
+
+  .left-side {
+    width: 2vw;
+  }
+
+  .right-side {
+    width: 2vw;
+  }
+
+  section#about-me {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  section#about-me>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div#about-me {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
