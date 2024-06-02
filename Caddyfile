@@ -1,6 +1,6 @@
 :{$PORT}
 
-@extensions path *.css 
+@extensions path *.png 
 header @extensions ?Cache-Control max-age=86400
 
 root * /srv
