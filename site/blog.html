@@ -59,27 +59,27 @@
         Creating a basic View is really as simple as defining a select query. This example is simple, but anything you can do with a <code>SELECT</code> query, you can use in a View.
         <pre>
           <code class="language-sql">
-create table artists (
-id         bigint primary key generated always as identity,
-first_name text not null,
-last_name  text not null 
-);
+    create table artists (
+    id         bigint primary key generated always as identity,
+    first_name text not null,
+    last_name  text not null 
+    );
 
-create table albums (
-id        bigint primary key generated always as identity,
-name      text not null,
-artist_id bigint not null references artist (id)
-);
+    create table albums (
+    id        bigint primary key generated always as identity,
+    name      text not null,
+    artist_id bigint not null references artist (id)
+    );
 
-create view artist_albums as 
-select artist.first_name  as artist_first_name,
-       artist.last_name   as artist_last_name,
-       artist.id          as artist_id,
-       album.id           as album_id,
-       album.name         as album_name
-from  artists artist
-join  albums album
-using (id);
+    create view artist_albums as 
+    select artist.first_name  as artist_first_name,
+           artist.last_name   as artist_last_name,
+           artist.id          as artist_id,
+           album.id           as album_id,
+           album.name         as album_name
+    from  artists artist
+    join  albums album
+    using (id);
           </code>
         </pre>
       </section>
@@ -88,7 +88,7 @@ using (id);
         Easy.
         <pre>
           <code class="language-sql">
-select * from artist_albums;
+    select * from artist_albums;
           </code>
         </pre>
       </section>
@@ -102,40 +102,40 @@ select * from artist_albums;
         Thus, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements cannot be used on the View. Create a function that returns a trigger that contains the logic to perform the insert/update/delete, and then a define a trigger to overwrite the default behavior.
         <pre>
           <code class="language-sql">
--- create a function to be used in a trigger when an insert occurs
-create or replace function insert_artist_albums()
-returns trigger
-language plpgsql
-as $$
-begin
--- create an artist and store into a temporary table called artist
-with artist as (
-  insert into artists (first_name, last_name)
-  -- new represents the values from the view
-  select new.artist_first_name, new.artist_last_name 
-  on conflict do nothing
-  returning *
-)
+    -- create a function to be used in a trigger when an insert occurs
+    create or replace function insert_artist_albums()
+    returns trigger
+    language plpgsql
+    as $$
+    begin
+    -- create an artist and store into a temporary table called artist
+    with artist as (
+      insert into artists (first_name, last_name)
+      -- new represents the values from the view
+      select new.artist_first_name, new.artist_last_name 
+      on conflict do nothing
+      returning *
+    )
 
-insert into albums (name, artist_id)
--- now we can get the id from the newly created artist
-select new.album_name, (select id from artist)
--- always think about your strategy for handling conflicts
-on conflict do nothing;
+    insert into albums (name, artist_id)
+    -- now we can get the id from the newly created artist
+    select new.album_name, (select id from artist)
+    -- always think about your strategy for handling conflicts
+    on conflict do nothing;
 
-return new;
-end;
-$$;
+    return new;
+    end;
+    $$;
 
-create trigger insert_artist_albums_trigger
--- this is the important line. runs the function on insert
-instead of insert on artist_albums
-for each row execute function insert_artist_albums();
+    create trigger insert_artist_albums_trigger
+    -- this is the important line. runs the function on insert
+    instead of insert on artist_albums
+    for each row execute function insert_artist_albums();
 
--- example
-insert into artist_albums
-(artist_first_name, artist_last_name, album_name)
-VALUES ('foo', 'bar', 'baz');
+    -- example
+    insert into artist_albums
+    (artist_first_name, artist_last_name, album_name)
+    VALUES ('foo', 'bar', 'baz');
           </code>
         </pre>
       Writing your first few functions and
