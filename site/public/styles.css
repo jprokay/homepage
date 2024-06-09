@@ -284,7 +284,7 @@ footer {
 pre {
   code {
     span {
-      text-wrap: pretty;
+      text-wrap: wrap;
     }
   }
 }
