@@ -48,15 +48,21 @@
               <cite><a href="https://www.postgresql.org/docs/16/sql-createview.html">PostgreSQL 16 Documentation</a></cite>
             </footer>
           </blockquote>
+          <p>
           At a basic level, a View is a "pre-defined query" that you interact with like a table.
           Views are a convenient way to collect raw <em>data</em> from multiple tables (or just one) and format it into useful <em>information</em>.
-          <br/>
+          </p>
+          <p>
           Instead of relying on application code to format data - consider using a View. By moving your logic closer to the data, you simplify your application code and centralize it for easy reuse across other applications.
+          </p>
       </section>
+
 
       <section id="create-view" class="blog">
         <h2>Creating a View</h2>
+        <p>
         Creating a basic View is really as simple as defining a select query. This example is simple, but anything you can do with a <code>SELECT</code> query, you can use in a View.
+        </p>
         <pre>
           <code class="language-sql">
     create table artists (
@@ -94,13 +100,18 @@
       </section>
       <section id="insert-view" class="blog">
         <h2>INSERT INTO a View</h2>
-        Performing <code>INSERT</code> operations are where Views begin to differ from a Table. For <a href="https://www.postgresql.org/docs/16/sql-createview.html#SQL-CREATEVIEW-UPDATABLE-VIEWS">a Simple View</a>,
-        everything works as you would expect.
-        <br/>
-        Unfortunately, the View defined in <a href="#create-view">the first example</a> is <em>not</em> considered a Simple View because of the <code>JOIN</code> clause. 
-        <br/>
-        Thus, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements cannot be used on the View. Create a function that returns a trigger that contains the logic to perform the insert/update/delete, and then a define a trigger to overwrite the default behavior.
+        <p>
+          Performing <code>INSERT</code> operations are where Views begin to differ from a Table. For <a href="https://www.postgresql.org/docs/16/sql-createview.html#SQL-CREATEVIEW-UPDATABLE-VIEWS">a Simple View</a>,
+          everything works as you would expect.
+        </p>
+        <p>
+          Unfortunately, the View defined in <a href="#create-view">the first example</a> is <em>not</em> considered a Simple View because of the <code>JOIN</code> clause. 
+        </p>
+        <p>
+          Thus, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements cannot be used on the View. Create a function that returns a trigger that contains the logic to perform the insert/update/delete, and then a define a trigger to overwrite the default behavior.
+          </p>
         <pre>
+
           <code class="language-sql">
     -- create a function to be used in a trigger when an insert occurs
     create or replace function insert_artist_albums()
@@ -138,43 +149,60 @@
     VALUES ('foo', 'bar', 'baz');
           </code>
         </pre>
+      <p>
       Writing your first few functions and
       <a href="https://www.postgresql.org/docs/16/sql-createtrigger.html">triggers</a> takes practice,
       but they are not much different than what you would do in application code.
+      </p>
+      <p>
       In the above example, we have two clear steps to the function: insert a new artist, then insert the album. Just like in application code, we must store the
       artist we create into a "temporary" variable using a <a href="https://www.postgresql.org/docs/current/queries-with.html#QUERIES-WITH">WITH</a> clause in order to reference the newly created artist ID.
+      </p>
       </section>
       <section id="views-rls" class="blog">
         <h2>Views & Row Level Security</h2>
+        <p>
         Covering the details of Row Level Security (RLS) is outside the scope of this post. Check out <a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase's Guide on RLS</a> for an overview.
-        <br/>
+        </p>
+        <p>
         By default, Views <strong>do not respect the RLS policies of underlying Tables.</strong>
         Add the <code>SECURITY INVOKER = true</code> clause when creating a View to ensure your RLS policies work as expected.
-        <br/>
         <em>This only works in Postgres 15 and above. Earlier versions of Postgres require you to <a href="https://www.benburwell.com/posts/row-level-security-postgresql-views/">implement a function.</a></em>
+        </p>
       </section>
 
       <section id="why-views" class="blog">
         <h2>Why use Views?</h2>
-        The biggest benefit I have seen since using Views is the separation of <em>data</em> from <em>information.</em> This split allows me to evolve the Table schemas while maintaining consistency at the View level.
-        <br/>
-        Consider a change to the name of a column. If you change a column name, now you need to update all your application code to respect the new column name.
-        If you have a View that defines an alias for the column using an <code>AS</code> clause, you only need to update the any references to the column within the View and any related functions. 
-        <br/>
+        <p>
+          The biggest benefit I have seen since using Views is the separation of <em>data</em> from <em>information.</em> This split allows me to evolve the Table schemas while maintaining consistency at the View level.
+        </p>
+
+        <p>
+          Consider a change to the name of a column. If you change a column name, now you need to update all your application code to respect the new column name.
+          If you have a View that defines an alias for the column using an <code>AS</code> clause, you only need to update the any references to the column within the View and any related functions. 
+        </p>
+        <p>
         A pattern I use to evolve my Views is to define versions schemas like <code>v1</code> and <code>v2</code>. Tables stay in schemas related to their domain, while Views exist under a version schema. "Major" updates to a View, that would break existing integrations, requires the creation of new View under a later version.
-        <br/>
-        Connected clients can gradually adopt the new version of the View - no different than a well-versioned API.
-        <br/>
-        The more integrations you have to your database, the more value Views provide. Retool, your backend, data analysts, etc., all benefit from well defined Views.
+        </p>
+        <p>
+          Connected clients can gradually adopt the new version of the View - no different than a well-versioned API.
+        </p>
+        <p>
+          The more integrations you have to your database, the more value Views provide. Retool, your backend, data analysts, etc., all benefit from well defined Views.
+        </p>
       </section>
       <section id="further-reading" class="blog">
         <h2>Further Reading</h2>
+        <p>
           <a href="https://www.pearson.com/en-us/subject-catalog/p/database-design-for-mere-mortals-25th-anniversary-edition/P200000000317/9780137459667">Database Design for Mere Mortals</a>: A well-rounded book on how to think about database design as it evolves with helpful chapters on documenting changes and interacting with stakeholders.
-        <br/>
-        <a href="https://postgres.fm/episodes/materialized-views">PostgresFM episode on Materialized Views</a>: Excellent podcast episode about a special class of View: the Materialized View.
+        <p>
+        <p>
+          <a href="https://postgres.fm/episodes/materialized-views">PostgresFM episode on Materialized Views</a>: Excellent podcast episode about a special class of View: the Materialized View.
+        </p>
 
-        <br/>
-        <a href="https://supabase.com/docs/guides/database/tables">Tables and Data | Supabase Docs</a>: Overview of Tables and Views with guidance on when to use them.
+        <p>
+          <a href="https://supabase.com/docs/guides/database/tables">Tables and Data | Supabase Docs</a>: Overview of Tables and Views with guidance on when to use them.
+        </p>
       </section>
 
     </article>
