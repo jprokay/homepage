@@ -1,12 +1,6 @@
 <footer id="bottom-footer"></footer>
 
-<script type="module">
-  import { codeToHtml } from 'https://esm.sh/shiki@1.0.0'
-
-  const codes = document.getElementsByClassName("language-sql")
-
-  for (let i = 0; i < codes.length; i++) {
-    codes[i].innerHTML = await codeToHtml(codes[i].innerHTML, { lang: 'sql', themes: { dark: 'tokyo-night', light: 'catppuccin-latte' } })
-  }
-</script>
-
+<!-- Include Prism JS (must be at the end of body) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" crossorigin="anonymous"></script>
+<!-- Language support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" crossorigin="anonymous"></script>

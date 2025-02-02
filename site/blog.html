@@ -63,40 +63,33 @@
         <p>
         Creating a basic View is really as simple as defining a select query. This example is simple, but anything you can do with a <code>SELECT</code> query, you can use in a View.
         </p>
-        <pre>
-          <code class="language-sql" tabindex="0">
-    create table artists (
-    id         bigint primary key generated always as identity,
-    first_name text not null,
-    last_name  text not null 
-    );
+        <pre><code class="language-sql" tabindex="0">create table artists (
+  id         bigint primary key generated always as identity,
+  first_name text not null,
+  last_name  text not null 
+);
 
-    create table albums (
-    id        bigint primary key generated always as identity,
-    name      text not null,
-    artist_id bigint not null references artist (id)
-    );
+create table albums (
+  id        bigint primary key generated always as identity,
+  name      text not null,
+  artist_id bigint not null references artist (id)
+);
 
-    create view artist_albums as 
-    select artist.first_name  as artist_first_name,
-           artist.last_name   as artist_last_name,
-           artist.id          as artist_id,
-           album.id           as album_id,
-           album.name         as album_name
-    from  artists artist
-    join  albums album
-    using (id);
-          </code>
-        </pre>
+create view artist_albums as 
+select artist.first_name  as artist_first_name,
+       artist.last_name   as artist_last_name,
+       artist.id          as artist_id,
+       album.id           as album_id,
+       album.name         as album_name
+from  artists artist
+join  albums album
+using (id);
+</code></pre>
       </section>
       <section id="select-view" class="blog">
         <h2>SELECT from a View</h2>
         Easy.
-        <pre>
-          <code class="language-sql">
-    select * from artist_albums;
-          </code>
-        </pre>
+        <pre><code class="language-sql">select * from artist_albums;</code></pre>
       </section>
       <section id="insert-view" class="blog">
         <h2>INSERT INTO a View</h2>
@@ -110,15 +103,9 @@
         <p>
           Thus, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements cannot be used on the View. Create a function that returns a trigger that contains the logic to perform the insert/update/delete, and then a define a trigger to overwrite the default behavior.
           </p>
-        <pre>
-
-          <code class="language-sql">
-    -- create a function to be used in a trigger when an insert occurs
-    create or replace function insert_artist_albums()
-    returns trigger
-    language plpgsql
-    as $$
-    begin
+          <pre><code class="language-sql">-- create a function to be used in a trigger when an insert occurs
+create or replace function insert_artist_albums() returns trigger as $$
+  begin
     -- create an artist and store into a temporary table called artist
     with artist as (
       insert into artists (first_name, last_name)
@@ -135,20 +122,18 @@
     on conflict do nothing;
 
     return new;
-    end;
-    $$;
+  end;
+$$ language plpgsql;
 
-    create trigger insert_artist_albums_trigger
-    -- this is the important line. runs the function on insert
-    instead of insert on artist_albums
-    for each row execute function insert_artist_albums();
+create trigger insert_artist_albums_trigger
+  -- this trick allows us to insert into the view
+  for each row execute function insert_artist_albums();
 
-    -- example
-    insert into artist_albums
-    (artist_first_name, artist_last_name, album_name)
-    VALUES ('foo', 'bar', 'baz');
-          </code>
-        </pre>
+-- example
+insert into artist_albums
+(artist_first_name, artist_last_name, album_name)
+VALUES ('foo', 'bar', 'baz');
+</code></pre>
       <p>
       Writing your first few functions and
       <a href="https://www.postgresql.org/docs/16/sql-createtrigger.html">triggers</a> takes practice,

@@ -191,7 +191,7 @@ a:hover>svg>path {
 }
 
 .heavy-gray {
-  filter: grayscale(70%)
+  filter: grayscale(30%)
 }
 
 #profile {
@@ -289,16 +289,6 @@ pre {
 
 @media (prefers-color-scheme: dark) {
 
-  .shiki,
-  .shiki span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-    /* Optional, if you also want font styles */
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
-  }
-
   a {
     color: white;
   }
@@ -339,6 +329,103 @@ pre {
       border-left: 1px solid white;
     }
   }
+
+  /* Catppuccin Mocha theme */
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #cdd6f4;
+    background: #1e1e2e;
+    text-shadow: none;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 2;
+    padding: 0.5em;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #6c7086;
+  }
+
+  .token.punctuation {
+    color: #89b4fa;
+  }
+
+  .token.namespace {
+    opacity: .7;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #f38ba8;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #a6e3a1;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #f5c2e7;
+    background: none;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #89b4fa;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: #fab387;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #f9e2af;
+  }
+
+  pre::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  pre::-webkit-scrollbar-track {
+    background: #181825;
+    border-radius: 0.5rem;
+  }
+
+  pre::-webkit-scrollbar-thumb {
+    background: #45475a;
+    border-radius: 0.5rem;
+    border: 4px solid #181825;
+  }
+
+  pre::-webkit-scrollbar-thumb:hover {
+    background: #585b70;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -381,5 +468,103 @@ pre {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+}
+
+/* Light mode (Catppuccin Latte) */
+@media (prefers-color-scheme: light) {
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #4c4f69;
+    background: #eff1f5;
+    text-shadow: none;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 2;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #8c8fa1;
+  }
+
+  .token.punctuation {
+    color: #1e66f5;
+  }
+
+  .token.namespace {
+    opacity: .7;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #d20f39;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #40a02b;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #ea76cb;
+    background: none;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #1e66f5;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: #fe640b;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #df8e1d;
+  }
+
+  pre::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  pre::-webkit-scrollbar-track {
+    background: #e6e9ef;
+    border-radius: 0.5rem;
+  }
+
+  pre::-webkit-scrollbar-thumb {
+    background: #ccd0da;
+    border-radius: 0.5rem;
+    border: 4px solid #e6e9ef;
+  }
+
+  pre::-webkit-scrollbar-thumb:hover {
+    background: #bcc0cc;
   }
 }
