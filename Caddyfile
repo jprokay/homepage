@@ -1,4 +1,4 @@
-:{$PORT}
+:80
 
 @extensions path *.png 
 header @extensions ?Cache-Control max-age=86400
