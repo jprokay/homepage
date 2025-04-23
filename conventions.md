@@ -1,0 +1,3 @@
+- Do not add any Javascript
+- Leverage Caddy's templating engine: https://caddyserver.com/docs/modules/http.handlers.templates
+- Refer to Golang's documentation on templating which Caddy uses: https://pkg.go.dev/text/template

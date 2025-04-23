@@ -13,6 +13,8 @@ services:
       - ./site:/srv
       - caddy_data:/data
       - caddy_config:/config
+    environment:
+      PORT: 80
 volumes:
   caddy_data:
   caddy_config:
