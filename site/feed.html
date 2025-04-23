@@ -10,34 +10,32 @@
       <h1 id="feed-heading">Feed</h1>
       
       <div class="posts-list">
-        {{ $files := glob "posts/*.html" }}
-        {{ range sortReverse $files }}
-          {{ $content := include . }}
+        {{ $files := listFiles "./posts" }}
+        {{ range $idx, $file := reverse $files }}
+          {{ $content := include (nospace (cat "/posts/" $file)) }}
           <!-- Find the first HTML comment which contains metadata -->
-          {{ $meta := findRE "<!--([\\s\\S]*?)-->" $content 1 }}
+          {{ $parsed := splitFrontMatter $content }}
           <!-- Remove HTML comments to get just the post content -->
-          {{ $postContent := $content | replaceRE "<!--[\\s\\S]*?-->" "" }}
           
-          {{ if $meta }}
+          {{ if $parsed}}
             <!-- Extract the metadata text by removing comment markers -->
-            {{ $metaStr := index $meta 0 | trimPrefix "<!--" | trimSuffix "-->" }}
             <!-- Extract specific metadata using regex: 
                  findRE "title: (.*)" - matches "title: " followed by any characters 
                  The 1 limits to first match -->
-            {{ $title := findRE "title: (.*)" $metaStr 1 }}
-            {{ $date := findRE "date: (.*)" $metaStr 1 }}
-            {{ $tags := findRE "tags: (.*)" $metaStr 1 }}
+            {{ $title := $parsed.Meta.title }}
+            {{ $date := $parsed.Meta.date }}
+            {{ $tags := $parsed.Meta.tags }}
             
             <section class="blog post-item">
-              <h2>{{ index $title 0 | trimPrefix "title: " | trim }}</h2>
+              <h2>{{ $title }}</h2>
               <div class="post-meta mono">
-                <time datetime="{{ if $date }}{{ index $date 0 | trimPrefix "date: " | trim }}{{ else }}{{ now | date "2006-01-02" }}{{ end }}">{{ if $date }}{{ index $date 0 | trimPrefix "date: " | trim }}{{ else }}{{ now | date "2006-01-02" }}{{ end }}</time>
+              <time datetime={{ $date }}>{{ $date | htmlDate }}</time>
                 {{ if $tags }}
-                  <span class="post-tags">{{ index $tags 0 | trimPrefix "tags: " | trim }}</span>
+                  <span class="post-tags">{{ $tags }}</span>
                 {{ end }}
               </div>
               <div class="post-content">
-                {{ $postContent }}
+                {{ $parsed.Body }}
               </div>
             </section>
           {{ end }}
