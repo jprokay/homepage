@@ -3,6 +3,13 @@
 @extensions path *.png 
 header @extensions ?Cache-Control max-age=86400
 
+# Individual post routes
+@post path /post/*
+handle @post {
+    uri strip_prefix /post
+    rewrite * /post.html
+}
+
 root * /srv
 try_files {path}.html
 encode zstd gzip
