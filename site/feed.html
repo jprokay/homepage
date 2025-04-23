@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{ include "./templates/head.html" }}
+<body>
+  {{ include "./templates/nav.html" "feed"}}
+  <div class="left-side"></div>
+  <main>
+    <article aria-labelledby="feed-heading" class="blog margin-top-lg">
+      <h1 id="feed-heading">Feed</h1>
+      
+      <div class="posts-list">
+        {{ $files := glob "posts/*.html" }}
+        {{ range sortReverse $files }}
+          {{ $content := include . }}
+          <!-- Find the first HTML comment which contains metadata -->
+          {{ $meta := findRE "<!--([\\s\\S]*?)-->" $content 1 }}
+          <!-- Remove HTML comments to get just the post content -->
+          {{ $postContent := $content | replaceRE "<!--[\\s\\S]*?-->" "" }}
+          
+          {{ if $meta }}
+            <!-- Extract the metadata text by removing comment markers -->
+            {{ $metaStr := index $meta 0 | trimPrefix "<!--" | trimSuffix "-->" }}
+            <!-- Extract specific metadata using regex: 
+                 findRE "title: (.*)" - matches "title: " followed by any characters 
+                 The 1 limits to first match -->
+            {{ $title := findRE "title: (.*)" $metaStr 1 }}
+            {{ $date := findRE "date: (.*)" $metaStr 1 }}
+            {{ $tags := findRE "tags: (.*)" $metaStr 1 }}
+            
+            <section class="blog post-item">
+              <h2>{{ index $title 0 | trimPrefix "title: " | trim }}</h2>
+              <div class="post-meta mono">
+                <time datetime="{{ index $date 0 | trimPrefix "date: " | trim }}">{{ index $date 0 | trimPrefix "date: " | trim }}</time>
+                {{ if $tags }}
+                  <span class="post-tags">{{ index $tags 0 | trimPrefix "tags: " | trim }}</span>
+                {{ end }}
+              </div>
+              <div class="post-content">
+                {{ $postContent }}
+              </div>
+            </section>
+          {{ end }}
+        {{ end }}
+      </div>
+    </article>
+  </main>
+  <div class="right-side"></div>
+  {{ include "./templates/footer.html" }}
+</body>
+</html>

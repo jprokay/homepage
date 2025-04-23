@@ -3,6 +3,7 @@
     <ul>
       <li><a aria-current={{ if eq (index .Args 0) ("home") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/">home</a></li>
       <li><a aria-current={{ if eq (index .Args 0) ("blog") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/blog">blog</a></li>
+      <li><a aria-current={{ if eq (index .Args 0) ("feed") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/feed">feed</a></li>
     </ul>
   </nav>
 </header>
