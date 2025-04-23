@@ -31,7 +31,7 @@
             <section class="blog post-item">
               <h2>{{ index $title 0 | trimPrefix "title: " | trim }}</h2>
               <div class="post-meta mono">
-                <time datetime="{{ index $date 0 | trimPrefix "date: " | trim }}">{{ index $date 0 | trimPrefix "date: " | trim }}</time>
+                <time datetime="{{ if $date }}{{ index $date 0 | trimPrefix "date: " | trim }}{{ else }}{{ now | date "2006-01-02" }}{{ end }}">{{ if $date }}{{ index $date 0 | trimPrefix "date: " | trim }}{{ else }}{{ now | date "2006-01-02" }}{{ end }}</time>
                 {{ if $tags }}
                   <span class="post-tags">{{ index $tags 0 | trimPrefix "tags: " | trim }}</span>
                 {{ end }}
