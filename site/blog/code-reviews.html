@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{ include "./../templates/head.html" }}
+<body>
+  {{ include "./../templates/nav.html" "blog"}}
+  <div class="left-side">
+    <ul class="blog-index">
+      <li>
+        <a href="#catching-snowflakes">00. Why You Should Care About Code Reviews</a>
+      </li>
+
+      <li>
+
+        <a href="#application-design">01. Code Reviews are about Trust</a>
+      </li>
+
+      <li>
+
+        <a href="#application-design">02. The Folly of Peer Reviews</a>
+      </li>
+      <li>
+        <a href="#init-sdl">03. AI Code Reviewers</a>
+      </li>
+      <li>
+        <a href="#render-window">04. Render a window</a>
+      </li>
+      <li>
+        <a href="#basic-events">05. Basic Events: How to Quit the app</a>
+      </li>
+      <li>
+        <a href="#complete-example">06. Complete Example</a>
+      </li>
+      <li>
+        <a href="#rtfm">07. Helpful Docs</a>
+      </li>
+    </ul>
+  </div>
+  <main>
+    <article aria-labelledby="blog-heading" class="blog blog-post margin-top-lg">
+      <h1 id="blog-heading">Going After Enterprises as a Startup</h1>
+      <section id="" class="blog">
+        <h2>Catching Snowflakes</h2>
+          <p>
+            Winning your first enterprise contract is a huge achievement that comes with many risks for a startup. You are now contractually obligated to provide both software
+            and <em>possibly 24/7 support</em> with only a small team. You are not solving software problems, you are solving operational problems. As a technical leader,
+            it will be up to you to navigate the relationship with the enterprise IT department and the wide range of requirements they may have to approve your software.
+          </p>
+          <p>
+            These requests can vary widly in complexity. Some departments will be satisfied with only a SOC2 Type 2 certificate while others require that you have immutable database
+            backups and robust audit logs. Each customer will be different, and it is key that you form a good relationship with them. From my experience, they <em>want</em> to approve you,
+            but they must protect their business - work to earn their trust and always be collaborative.
+          </p>
+
+          <p>
+            That is all I am qualified to say on the social aspect, but I can offer you some advice on how to design your software architecture to maximize your success.
+        </p>
+      </section>
+
+
+      <section id="application-design" class="blog">
+        <h2>Preparing your database</h2>
+        <p>
+          Network security is clearly important to any enterprise, but a close second is how you manage your data. While you want a multi-tenant architecture, your white whale wants their own
+          database. If you are lucky, this is simply a logical separation. Others want infrastructure.</p>
+          OKAY WHAT AM THE POINT I AM TRYING TO GET ACROSS? AM I HERE TO LINK TO DOCUMENTATION? DESIGN THINGS?
+              </section>
+      <section id="cmake-detour" class="blog">
+        <h2>Infrastructure</h2>
+          <p>
+            The short answer: stick to the major cloud providers (AWS, Azure, GCP) and avoid leveraging too many 3rd party PaaS services. SOC2 requires that you audit your contracts with your providers and
+            ensure they also meet certain compliance standards if they handle sensitive data. Many providers upcharge for these guarantees - it is not uncommon for your bill to go up 10x or more for their
+            <em>"SOC2 Compliant"</em>tier. AWS (my cloud of choice) does not require nearly as large an investment in capital, but will require more of your time to properly configure your infrastructure.
+          </p>
+          <p>
+           
+          </p>
+        </section>
+      <section id="init-sdl" class="blog">
+        <h2>Initializing SDL</h2>
+        <p>
+          Performing <code>INSERT</code> operations are where Views begin to differ from a Table. For <a href="https://www.postgresql.org/docs/16/sql-createview.html#SQL-CREATEVIEW-UPDATABLE-VIEWS">a Simple View</a>,
+          everything works as you would expect.
+        </p>
+        <p>
+          Unfortunately, the View defined in <a href="#create-view">the first example</a> is <em>not</em> considered a Simple View because of the <code>JOIN</code> clause. 
+        </p>
+        <p>
+          Thus, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements cannot be used on the View. Create a function that returns a trigger that contains the logic to perform the insert/update/delete, and then a define a trigger to overwrite the default behavior.
+          </p>
+          <pre><code class="language-c">bool game_init(struct Game *game) {
+	if (!SDL_SetAppMetadata(APP_NAME, APP_VERSION, APP_ID)) {
+		fprintf(stderr, "Failed to set metadata: %s\n", SDL_GetError());
+		return false;
+	};
+	if (!SDL_Init(SDL_INIT_VIDEO)) {
+		fprintf(stderr, "Failed to initialized SDL: %s\n", SDL_GetError());
+		return false;
+	};	
+
+	game->window = SDL_CreateWindow(WIN_TITLE, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALWAYS_ON_TOP);
+	if (!game->window) {
+		fprintf(stderr, "Failed to create window: %s\n", SDL_GetError());
+		return false;
+	}
+
+	game->renderer = SDL_CreateRenderer(game->window, NULL);
+	if (!game->renderer) {
+		fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
+		return false;
+	}
+
+	return true;
+}
+</code></pre>
+      <p>
+      Writing your first few functions and
+      <a href="https://www.postgresql.org/docs/16/sql-createtrigger.html">triggers</a> takes practice,
+      but they are not much different than what you would do in application code.
+      </p>
+      <p>
+      In the above example, we have two clear steps to the function: insert a new artist, then insert the album. Just like in application code, we must store the
+      artist we create into a "temporary" variable using a <a href="https://www.postgresql.org/docs/current/queries-with.html#QUERIES-WITH">WITH</a> clause in order to reference the newly created artist ID.
+      </p>
+      </section>
+      <section id="render-window" class="blog">
+        <h2>Views &amp; Row Level Security</h2>
+        <p>
+        Covering the details of Row Level Security (RLS) is outside the scope of this post. Check out <a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase's Guide on RLS</a> for an overview.
+        </p>
+        <p>
+        By default, Views <strong>do not respect the RLS policies of underlying Tables.</strong>
+        Add the <code>SECURITY INVOKER = true</code> clause when creating a View to ensure your RLS policies work as expected.
+        <em>This only works in Postgres 15 and above. Earlier versions of Postgres require you to <a href="https://www.benburwell.com/posts/row-level-security-postgresql-views/">implement a function.</a></em>
+        </p>
+      </section>
+
+      <section id="basic-events" class="blog">
+        <h2>Why use Views?</h2>
+        <p>
+          The biggest benefit I have seen since using Views is the separation of <em>data</em> from <em>information.</em> This split allows me to evolve the Table schemas while maintaining consistency at the View level.
+        </p>
+
+        <p>
+          Consider a change to the name of a column. If you change a column name, now you need to update all your application code to respect the new column name.
+          If you have a View that defines an alias for the column using an <code>AS</code> clause, you only need to update the any references to the column within the View and any related functions. 
+        </p>
+        <p>
+        A pattern I use to evolve my Views is to define versions schemas like <code>v1</code> and <code>v2</code>. Tables stay in schemas related to their domain, while Views exist under a version schema. "Major" updates to a View, that would break existing integrations, requires the creation of new View under a later version.
+        </p>
+        <p>
+          Connected clients can gradually adopt the new version of the View - no different than a well-versioned API.
+        </p>
+        <p>
+          The more integrations you have to your database, the more value Views provide. Retool, your backend, data analysts, etc., all benefit from well defined Views.
+        </p>
+      </section>
+      <section id="complete-example" class="blog">
+        <h2>Complete Example</h2>
+          <pre><code class="language-c" tabindex="0">#include "SDL3/SDL_events.h"
+#include "SDL3/SDL_init.h"
+#include <stdio.h>
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+
+#include <stdbool.h>
+
+#define APP_NAME		"Hello World"
+#define APP_VERSION "0.0.1"
+#define APP_ID			"dev.jprokay"
+#define WIN_TITLE		"Hello SDL"
+#define WIN_WIDTH		800
+#define WIN_HEIGHT	600
+
+struct Game {
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+};
+
+bool game_init(struct Game *game);
+void game_cleanup(struct Game *game);
+
+bool game_init(struct Game *game) {
+	if (!SDL_SetAppMetadata(APP_NAME, APP_VERSION, APP_ID)) {
+		fprintf(stderr, "Failed to set metadata: %s\n", SDL_GetError());
+		return false;
+	};
+	if (!SDL_Init(SDL_INIT_VIDEO)) {
+		fprintf(stderr, "Failed to initialized SDL: %s\n", SDL_GetError());
+		return false;
+	};	
+
+	game->window = SDL_CreateWindow(WIN_TITLE, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALWAYS_ON_TOP);
+	if (!game->window) {
+		fprintf(stderr, "Failed to create window: %s\n", SDL_GetError());
+		return false;
+	}
+
+	game->renderer = SDL_CreateRenderer(game->window, NULL);
+	if (!game->renderer) {
+		fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
+		return false;
+	}
+
+	return true;
+}
+
+void game_cleanup(struct Game *game) {
+	SDL_DestroyRenderer(game->renderer);
+	SDL_DestroyWindow(game->window);
+	SDL_Quit();
+}
+
+int main(int argc, char* argv[]) {
+	printf("Starting\n");
+	struct Game game = {
+		.window = NULL,
+		.renderer = NULL
+	};
+	if(!game_init(&game)) {
+		game_cleanup(&game);
+		return 1;
+	};
+
+	bool stop = false;
+	while (!stop) {
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			switch (event.type) {
+				case SDL_EVENT_QUIT:
+					stop = true;
+					break;
+			}
+		}
+
+		SDL_RenderClear(game.renderer);
+		SDL_RenderPresent(game.renderer);
+	}
+	game_cleanup(&game);
+
+	printf("Done\n");
+	return 0;
+}
+</code></pre>
+        <p>
+          <a href="https://www.pearson.com/en-us/subject-catalog/p/database-design-for-mere-mortals-25th-anniversary-edition/P200000000317/9780137459667">Database Design for Mere Mortals</a>: A well-rounded book on how to think about database design as it evolves with helpful chapters on documenting changes and interacting with stakeholders.
+        <p>
+        <p>
+          <a href="https://postgres.fm/episodes/materialized-views">PostgresFM episode on Materialized Views</a>: Excellent podcast episode about a special class of View: the Materialized View.
+        </p>
+
+        <p>
+          <a href="https://supabase.com/docs/guides/database/tables">Tables and Data | Supabase Docs</a>: Overview of Tables and Views with guidance on when to use them.
+        </p>
+      </section>
+
+    </article>
+  </main>
+  <div class="right-side"></div>
+  {{ include "./templates/footer.html" }}
+  </body>
+</html>

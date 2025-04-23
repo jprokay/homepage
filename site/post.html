@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-{{ $postPath := slice (path_base {path}) 0 }}
-{{ $content := include (nospace (cat "./posts/" $postPath)) }}
+{{ $postPath := splitList "/" (placeholder "http.request.orig_uri.path") }}
+{{ $content := include (nospace (cat "./posts/" (last $postPath))) }}
 {{ $parsed := splitFrontMatter $content }}
 
 {{ if not $parsed }}

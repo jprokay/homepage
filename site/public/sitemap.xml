@@ -47,16 +47,5 @@
       <priority>0.7</priority>
 
    </url>
-   <url>
-
-      <loc>https://jprokay.com/post/002-second-post.html</loc>
-
-      <lastmod>2023-12-15</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.7</priority>
-
-   </url>
    <!-- Add new posts manually when you create them -->
 </urlset>

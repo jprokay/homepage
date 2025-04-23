@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{ include "./../templates/head.html" }}
+<body>
+  {{ include "./../templates/nav.html" "blog"}}
+  <div class="left-side">
+    <ul class="blog-index">
+      <li>
+        <a href="#what-is-sdl">00. What is SDL?</a>
+      </li>
+
+      <li>
+        <a href="#project-setup">01. Project Setup</a>
+      </li>
+
+      <li>
+        <a href="#cmake-detour">02. CMake Detour</a>
+      </li>
+      <li>
+        <a href="#init-sdl">03. Initializing SDL</a>
+      </li>
+      <li>
+        <a href="#render-window">04. Render a window</a>
+      </li>
+      <li>
+        <a href="#basic-events">05. Basic Events: How to Quit the app</a>
+      </li>
+      <li>
+        <a href="#complete-example">06. Complete Example</a>
+      </li>
+      <li>
+        <a href="#rtfm">07. Helpful Docs</a>
+      </li>
+    </ul>
+  </div>
+  <main>
+    <article aria-labelledby="blog-heading" class="blog blog-post margin-top-lg">
+      <h1 id="blog-heading">Building a Game with C & SDL</h1>
+      <section id="what-is-sdl" class="blog">
+        <h2>What is SDL?</h2>
+          <p>
+          If you primarily use Object Relational Mapping (ORM) frameworks for interacting with your database, you may not be familiar
+          with the concept of a View and why you would want to use it.
+          <br/>
+          First, let's look at the official documentation.
+          </p>
+          <blockquote cite="https://www.postgresql.org/docs/16/sql-createview.html">
+            CREATE VIEW defines a view of a query. The view is not physically materialized. Instead, the query is run every time the view is referenced in a query.
+            <footer>
+              <cite><a href="https://www.postgresql.org/docs/16/sql-createview.html">PostgreSQL 16 Documentation</a></cite>
+            </footer>
+          </blockquote>
+          <p>
+          </p>
+          <p>
+          Instead of relying on application code to format data - consider using a View. By moving your logic closer to the data, you simplify your application code and centralize it for easy reuse across other applications.
+          </p>
+      </section>
+
+
+      <section id="project-setup" class="blog">
+        <h2>Project Setup</h2>
+        <p>
+        Creating a basic View is really as simple as defining a select query. This example is simple, but anything you can do with a <code>SELECT</code> query, you can use in a View.
+        </p>
+        <pre><code class="language-cmake" tabindex="0"># Defines the range of allowable CMake versions
+cmake_minimum_required(VERSION 3.15...3.30.5)
+
+# Defines the Project. Hello is a "target" that can
+# be referenced in other functions
+project(hello VERSION 1.0
+							DESCRIPTION "Hello CMake"
+							LANGUAGES C)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+
+# This assumes the SDL source is available in vendored/SDL
+add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
+
+# Create your game executable target as usual
+add_executable(hello WIN32 hello.c)
+
+# Link to the actual SDL3 library.
+target_link_libraries(hello PRIVATE SDL3::SDL3)
+</code></pre>
+      </section>
+      <section id="cmake-detour" class="blog">
+        <h2>CMake Detour</h2>
+        Easy.
+        <pre><code class="language-sql">select * from artist_albums;</code></pre>
+      </section>
+      <section id="init-sdl" class="blog">
+        <h2>Initializing SDL</h2>
+        <p>
+          Performing <code>INSERT</code> operations are where Views begin to differ from a Table. For <a href="https://www.postgresql.org/docs/16/sql-createview.html#SQL-CREATEVIEW-UPDATABLE-VIEWS">a Simple View</a>,
+          everything works as you would expect.
+        </p>
+        <p>
+          Unfortunately, the View defined in <a href="#create-view">the first example</a> is <em>not</em> considered a Simple View because of the <code>JOIN</code> clause. 
+        </p>
+        <p>
+          Thus, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements cannot be used on the View. Create a function that returns a trigger that contains the logic to perform the insert/update/delete, and then a define a trigger to overwrite the default behavior.
+          </p>
+          <pre><code class="language-c">bool game_init(struct Game *game) {
+	if (!SDL_SetAppMetadata(APP_NAME, APP_VERSION, APP_ID)) {
+		fprintf(stderr, "Failed to set metadata: %s\n", SDL_GetError());
+		return false;
+	};
+	if (!SDL_Init(SDL_INIT_VIDEO)) {
+		fprintf(stderr, "Failed to initialized SDL: %s\n", SDL_GetError());
+		return false;
+	};	
+
+	game->window = SDL_CreateWindow(WIN_TITLE, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALWAYS_ON_TOP);
+	if (!game->window) {
+		fprintf(stderr, "Failed to create window: %s\n", SDL_GetError());
+		return false;
+	}
+
+	game->renderer = SDL_CreateRenderer(game->window, NULL);
+	if (!game->renderer) {
+		fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
+		return false;
+	}
+
+	return true;
+}
+</code></pre>
+      <p>
+      Writing your first few functions and
+      <a href="https://www.postgresql.org/docs/16/sql-createtrigger.html">triggers</a> takes practice,
+      but they are not much different than what you would do in application code.
+      </p>
+      <p>
+      In the above example, we have two clear steps to the function: insert a new artist, then insert the album. Just like in application code, we must store the
+      artist we create into a "temporary" variable using a <a href="https://www.postgresql.org/docs/current/queries-with.html#QUERIES-WITH">WITH</a> clause in order to reference the newly created artist ID.
+      </p>
+      </section>
+      <section id="render-window" class="blog">
+        <h2>Views &amp; Row Level Security</h2>
+        <p>
+        Covering the details of Row Level Security (RLS) is outside the scope of this post. Check out <a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase's Guide on RLS</a> for an overview.
+        </p>
+        <p>
+        By default, Views <strong>do not respect the RLS policies of underlying Tables.</strong>
+        Add the <code>SECURITY INVOKER = true</code> clause when creating a View to ensure your RLS policies work as expected.
+        <em>This only works in Postgres 15 and above. Earlier versions of Postgres require you to <a href="https://www.benburwell.com/posts/row-level-security-postgresql-views/">implement a function.</a></em>
+        </p>
+      </section>
+
+      <section id="basic-events" class="blog">
+        <h2>Why use Views?</h2>
+        <p>
+          The biggest benefit I have seen since using Views is the separation of <em>data</em> from <em>information.</em> This split allows me to evolve the Table schemas while maintaining consistency at the View level.
+        </p>
+
+        <p>
+          Consider a change to the name of a column. If you change a column name, now you need to update all your application code to respect the new column name.
+          If you have a View that defines an alias for the column using an <code>AS</code> clause, you only need to update the any references to the column within the View and any related functions. 
+        </p>
+        <p>
+        A pattern I use to evolve my Views is to define versions schemas like <code>v1</code> and <code>v2</code>. Tables stay in schemas related to their domain, while Views exist under a version schema. "Major" updates to a View, that would break existing integrations, requires the creation of new View under a later version.
+        </p>
+        <p>
+          Connected clients can gradually adopt the new version of the View - no different than a well-versioned API.
+        </p>
+        <p>
+          The more integrations you have to your database, the more value Views provide. Retool, your backend, data analysts, etc., all benefit from well defined Views.
+        </p>
+      </section>
+      <section id="complete-example" class="blog">
+        <h2>Complete Example</h2>
+          <pre><code class="language-c" tabindex="0">#include "SDL3/SDL_events.h"
+#include "SDL3/SDL_init.h"
+#include <stdio.h>
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+
+#include <stdbool.h>
+
+#define APP_NAME		"Hello World"
+#define APP_VERSION "0.0.1"
+#define APP_ID			"dev.jprokay"
+#define WIN_TITLE		"Hello SDL"
+#define WIN_WIDTH		800
+#define WIN_HEIGHT	600
+
+struct Game {
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+};
+
+bool game_init(struct Game *game);
+void game_cleanup(struct Game *game);
+
+bool game_init(struct Game *game) {
+	if (!SDL_SetAppMetadata(APP_NAME, APP_VERSION, APP_ID)) {
+		fprintf(stderr, "Failed to set metadata: %s\n", SDL_GetError());
+		return false;
+	};
+	if (!SDL_Init(SDL_INIT_VIDEO)) {
+		fprintf(stderr, "Failed to initialized SDL: %s\n", SDL_GetError());
+		return false;
+	};	
+
+	game->window = SDL_CreateWindow(WIN_TITLE, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALWAYS_ON_TOP);
+	if (!game->window) {
+		fprintf(stderr, "Failed to create window: %s\n", SDL_GetError());
+		return false;
+	}
+
+	game->renderer = SDL_CreateRenderer(game->window, NULL);
+	if (!game->renderer) {
+		fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
+		return false;
+	}
+
+	return true;
+}
+
+void game_cleanup(struct Game *game) {
+	SDL_DestroyRenderer(game->renderer);
+	SDL_DestroyWindow(game->window);
+	SDL_Quit();
+}
+
+int main(int argc, char* argv[]) {
+	printf("Starting\n");
+	struct Game game = {
+		.window = NULL,
+		.renderer = NULL
+	};
+	if(!game_init(&game)) {
+		game_cleanup(&game);
+		return 1;
+	};
+
+	bool stop = false;
+	while (!stop) {
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			switch (event.type) {
+				case SDL_EVENT_QUIT:
+					stop = true;
+					break;
+			}
+		}
+
+		SDL_RenderClear(game.renderer);
+		SDL_RenderPresent(game.renderer);
+	}
+	game_cleanup(&game);
+
+	printf("Done\n");
+	return 0;
+}
+</code></pre>
+        <p>
+          <a href="https://www.pearson.com/en-us/subject-catalog/p/database-design-for-mere-mortals-25th-anniversary-edition/P200000000317/9780137459667">Database Design for Mere Mortals</a>: A well-rounded book on how to think about database design as it evolves with helpful chapters on documenting changes and interacting with stakeholders.
+        <p>
+        <p>
+          <a href="https://postgres.fm/episodes/materialized-views">PostgresFM episode on Materialized Views</a>: Excellent podcast episode about a special class of View: the Materialized View.
+        </p>
+
+        <p>
+          <a href="https://supabase.com/docs/guides/database/tables">Tables and Data | Supabase Docs</a>: Overview of Tables and Views with guidance on when to use them.
+        </p>
+      </section>
+
+    </article>
+  </main>
+  <div class="right-side"></div>
+  {{ include "./templates/footer.html" }}
+  </body>
+</html>
