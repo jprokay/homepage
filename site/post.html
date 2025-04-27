@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {{ $postPath := splitList "/" (placeholder "http.request.orig_uri.path") }}
-{{ $content := include (nospace (cat "./posts/" (last $postPath))) }}
+{{ $content := readFile (nospace (cat "./posts/" (last $postPath))) }}
 {{ $parsed := splitFrontMatter $content }}
 
 {{ if not $parsed }}
@@ -57,9 +57,7 @@
             <span class="post-tags">{{ $parsed.Meta.tags }}</span>
           {{ end }}
         </div>
-        <div class="post-content">
-          {{ $parsed.Body }}
-        </div>
+          {{ markdown $parsed.Body }}
         <div class="post-navigation margin-top-lg">
           <a href="/feed">← Back to all posts</a>
         </div>

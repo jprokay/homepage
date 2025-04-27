@@ -10,8 +10,8 @@
       
       <div class="posts-list">
         {{ $files := listFiles "./posts" }}
-        {{ range $idx, $file := reverse $files }}
-          {{ $content := include (nospace (cat "/posts/" $file)) }}
+        {{ range $idx, $file := $files }}
+          {{ $content := readFile (nospace (cat "/posts/" $file)) }}
           <!-- Find the first HTML comment which contains metadata -->
           {{ $parsed := splitFrontMatter $content }}
           <!-- Remove HTML comments to get just the post content -->
@@ -34,7 +34,7 @@
                 {{ end }}
               </div>
               <div class="post-content">
-                {{ $parsed.Body }}
+                {{ markdown $parsed.Body }}
               </div>
             </section>
           {{ end }}
