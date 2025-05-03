@@ -10,7 +10,7 @@
       
       <div class="posts-list">
         {{ $files := listFiles "./posts" }}
-        {{ range $idx, $file := $files }}
+        {{ range $idx, $file := reverse (sortAlpha $files) }}
           {{ $content := readFile (nospace (cat "/posts/" $file)) }}
           <!-- Find the first HTML comment which contains metadata -->
           {{ $parsed := splitFrontMatter $content }}
