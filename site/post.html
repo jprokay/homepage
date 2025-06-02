@@ -24,11 +24,11 @@
     
     <!-- SEO Meta Tags -->
     <title>{{ $parsed.Meta.title }} | jprokay</title>
-    <meta name="description" content="{{ $parsed.Meta.description | default "Blog post by Julian Prokay" }}" />
+    <meta name="description" content="{{ $parsed.Meta.description | default `Blog post by Julian Prokay` }}" />
     
     <!-- Open Graph tags -->
     <meta property="og:title" content="{{ $parsed.Meta.title }}" />
-    <meta property="og:description" content="{{ $parsed.Meta.description | default "Blog post by Julian Prokay" }}" />
+    <meta property="og:description" content="{{ $parsed.Meta.description | default `Blog post by Julian Prokay` }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://jprokay.com/post/{{ last $postPath }}" />
     <meta property="og:image" content="https://jprokay.com/public/me.jpg" />
@@ -41,7 +41,7 @@
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ $parsed.Meta.title }}" />
-    <meta name="twitter:description" content="{{ $parsed.Meta.description | default "Blog post by Julian Prokay" }}" />
+    <meta name="twitter:description" content="{{ $parsed.Meta.description | default `Blog post by Julian Prokay` }}" />
     <meta name="twitter:image" content="https://jprokay.com/public/me.jpg" />
     
     <link rel="icon" href="/public/favicon.svg">
