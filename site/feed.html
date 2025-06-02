@@ -26,7 +26,7 @@
             {{ $tags := $parsed.Meta.tags }}
             
             <section class="blog post-item">
-              <h2><a href="/post/{{ $file }}">{{ $title }}</a></h2>
+              <h2><a href="/post/{{ $file | strings.TrimSuffix ".md" }}">{{ $title }}</a></h2>
               <div class="post-meta mono">
               <time datetime={{ $date }}>{{ $date | htmlDate }}</time>
                 {{ if $tags }}
