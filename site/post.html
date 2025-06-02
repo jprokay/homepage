@@ -2,7 +2,7 @@
 <html lang="en">
 {{ $postPath := splitList "/" (placeholder "http.request.orig_uri.path") }}
 {{ $postFile := last $postPath }}
-{{ if not (hasSuffix $postFile ".md") }}
+{{ if not (hasSuffix ".md" $postFile ) }}
   {{ $postFile = printf "%s.md" $postFile }}
 {{ end }}
 {{ $content := readFile (nospace (cat "./posts/" $postFile)) }}

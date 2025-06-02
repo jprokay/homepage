@@ -106,6 +106,79 @@
       <priority>0.7</priority>
 
    </url>
+   
+   <url>
+
+      <loc>https://jprokay.com/post/001-first-post</loc>
+
+      <lastmod>2025-04-26</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   
+   <url>
+
+      <loc>https://jprokay.com/post/002-anatomy-of-a-post</loc>
+
+      <lastmod>2025-04-26</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   
+   <url>
+
+      <loc>https://jprokay.com/post/003-styling-code-with-chroma</loc>
+
+      <lastmod>2025-04-26</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+  
+   <url>
+
+      <loc>https://jprokay.com/post/004-sorting-files</loc>
+
+      <lastmod>2025-05-03</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
+      <loc>https://jprokay.com/post/005-mvb</loc>
+
+      <lastmod>2025-05-03</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+  
+   <url>
+
+      <loc>https://jprokay.com/post/006-shifting-left</loc>
+
+      <lastmod>2025-06-02</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+
 
 
 
