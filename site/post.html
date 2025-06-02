@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 {{ $postPath := splitList "/" (placeholder "http.request.orig_uri.path") }}
-{{ $content := readFile (nospace (cat "./posts/" (last $postPath))) }}
+{{ $postFile := last $postPath }}
+{{ if not (hasSuffix $postFile ".md") }}
+  {{ $postFile = printf "%s.md" $postFile }}
+{{ end }}
+{{ $content := readFile (nospace (cat "./posts/" $postFile)) }}
 {{ $parsed := splitFrontMatter $content }}
 
 {{ if not $parsed }}
