@@ -6,11 +6,10 @@ description: AI is shifting the task of engineering towards one of judgement and
 ---
 
 [Not So Common Thoughts](https://notsocommonthoughts.com/blog/ai-and-judgement/) produced a great post that succinctly combines the historical ways that technology has shifted production
-away from skilled labor, i.e. people needing years of experience with a certain skill. Taste, the ability to critique, and clarity of vision will be the core skills of the software
-developer.
+away from skilled labor, i.e. people needing years of experience with a certain skill, towards something approaching a critic, or someone with good taste and judgement. Brian Eno recognized
+how music was affected in such a way by the advent of the computer sequencer.
 
-If the future engineer is really just an "ideas guy" with the right level of prior-knowledge to accurately judge output, what does that mean for what we are expected to output if not
-code?
+What does this mean for the software engineer in the world of Claude & ChatGPT? Are we all just _"Ideas Guys"_, endlessly bothering our agents to "trust them - this idea is worth millions"?
 
 Personally, I think we are going to see a return of strict documentation and requirements at every step of the process. The clarity of your vision will become paramount to ensure
 that your vibecode will not degenerate into complete slop. Humans have the distinct advantage of being able to deal with ambiguity due to our massive context windows and prior knowledge
