@@ -1,7 +1,7 @@
 ---
 title: Shifting Left 
 date: 2025-06-02
-tags: hackernews, AI, artificial intelligence, software design, Aider, ChatGPT, Claude, Anthrophic 
+tags: hackernews, AI, artificial intelligence, software design
 description: AI is shifting the task of engineering towards one of judgement and evaluation. What skills will the engineer of the future need to be successful?
 ---
 
