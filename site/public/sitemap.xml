@@ -47,7 +47,7 @@
       <priority>0.7</priority>
 
    </url>
-   
+
    <url>
 
       <loc>https://jprokay.com/post/002-anatomy-of-a-post.md</loc>
@@ -59,7 +59,7 @@
       <priority>0.7</priority>
 
    </url>
-   
+
    <url>
 
       <loc>https://jprokay.com/post/003-styling-code-with-chroma.md</loc>
@@ -71,7 +71,7 @@
       <priority>0.7</priority>
 
    </url>
-  
+
    <url>
 
       <loc>https://jprokay.com/post/004-sorting-files.md</loc>
@@ -94,7 +94,7 @@
       <priority>0.7</priority>
 
    </url>
-  
+
    <url>
 
       <loc>https://jprokay.com/post/006-shifting-left.md</loc>
@@ -106,7 +106,7 @@
       <priority>0.7</priority>
 
    </url>
-   
+
    <url>
 
       <loc>https://jprokay.com/post/001-first-post</loc>
@@ -118,7 +118,7 @@
       <priority>0.7</priority>
 
    </url>
-   
+
    <url>
 
       <loc>https://jprokay.com/post/002-anatomy-of-a-post</loc>
@@ -130,7 +130,7 @@
       <priority>0.7</priority>
 
    </url>
-   
+
    <url>
 
       <loc>https://jprokay.com/post/003-styling-code-with-chroma</loc>
@@ -142,7 +142,7 @@
       <priority>0.7</priority>
 
    </url>
-  
+
    <url>
 
       <loc>https://jprokay.com/post/004-sorting-files</loc>
@@ -165,7 +165,7 @@
       <priority>0.7</priority>
 
    </url>
-  
+
    <url>
 
       <loc>https://jprokay.com/post/006-shifting-left</loc>
@@ -177,11 +177,17 @@
       <priority>0.7</priority>
 
    </url>
+   <url>
 
+      <loc>https://jprokay.com/post/007-on-ai-assistance</loc>
 
+      <lastmod>2025-06-03</lastmod>
 
+      <changefreq>monthly</changefreq>
 
+      <priority>0.7</priority>
 
+   </url>
 
 
    <!-- Add new posts manually when you create them -->
