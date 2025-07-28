@@ -14,7 +14,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     environment:
-      PORT: 80
+      PORT: 2019
 volumes:
   caddy_data:
   caddy_config:
