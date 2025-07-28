@@ -1,0 +1,102 @@
+/* Critical CSS - Above-the-fold styles */
+:root {
+  --mono-font: "Red Hat Mono", "Courier New", Courier, monospace;
+  --default-font: "Titillium Web", "Courier New", Courier, monospace;
+}
+
+/* Base layout */
+body {
+  display: grid;
+  word-wrap: normal;
+  grid-template: auto 1fr auto / auto 1fr auto;
+  font-family: var(--default-font);
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark mode base */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: black;
+  }
+  a { color: white; }
+}
+
+/* Light mode base */
+@media (prefers-color-scheme: light) {
+  body {
+    color: black;
+    background-color: white;
+  }
+  a { color: black; }
+}
+
+/* Grid layout */
+header { grid-column: 1 / 4; }
+.left-side { grid-column: 1 / 2; width: 15vw; }
+main { grid-column: 2 / 3; word-wrap: break-word; overflow-wrap: break-word; }
+.right-side { grid-column: 3 / 4; width: 15vw; }
+footer { grid-column: 1 / 4; }
+
+/* Navigation */
+nav { font-size: 1.5rem; }
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li:not(:last-child)::after {
+  content: '|';
+  margin: 0 1rem;
+}
+
+/* Core typography */
+h2 {
+  margin-top: 0px;
+  margin-bottom: 4px;
+}
+p {
+  font-family: var(--mono-font);
+}
+a {
+  text-decoration: underline;
+}
+
+/* About section */
+#about-me {
+  display: flex;
+  flex-direction: column;
+}
+.spaced-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+#profile {
+  width: 15rem;
+  height: 15rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid white;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .left-side { width: 2vw; }
+  .right-side { width: 2vw; }
+  section#about-me {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
