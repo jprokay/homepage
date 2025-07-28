@@ -442,6 +442,28 @@ pre {
   font-family: var(--default-font);
 }
 
+.read-more {
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  position: relative;
+}
+
+.read-more::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.read-more:hover::after {
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   ul.blog-index {
     display: none;

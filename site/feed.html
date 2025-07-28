@@ -34,7 +34,13 @@
                 {{ end }}
               </div>
               <div class="post-content">
-                {{ markdown $parsed.Body }}
+                {{ $paragraphs := splitList "\n\n" $parsed.Body }}
+                {{ $firstThree := slice $paragraphs 0 3 }}
+                {{ $preview := join "\n\n" $firstThree }}
+                {{ markdown $preview }}
+                {{ if gt (len $paragraphs) 3 }}
+                  <p><a href="/post/{{ $file | trimSuffix ".md" }}" class="read-more">Read more →</a></p>
+                {{ end }}
               </div>
             </section>
           {{ end }}
