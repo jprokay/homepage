@@ -1,0 +1,33 @@
+name: Generate Site Files
+
+on:
+  push:
+    paths:
+      - 'site/posts/*.md'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-files:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Generate sitemap
+      run: |
+        chmod +x scripts/generate-sitemap.sh
+        ./scripts/generate-sitemap.sh
+    
+    - name: Generate llms.txt
+      run: |
+        chmod +x scripts/generate-llms-txt.sh
+        ./scripts/generate-llms-txt.sh
+    
+    - name: Commit and push if changed
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add site/public/sitemap.xml site/llms.txt
+        git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update sitemap and llms.txt" && git push)

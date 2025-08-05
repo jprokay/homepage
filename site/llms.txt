@@ -1,0 +1,39 @@
+# Julian Prokay's Blog
+
+> Full-stack developer with 15 years of experience architecting systems, building teams, and deploying infrastructure. Writing about AI development, software engineering, and the intersection of technology and creativity.
+
+I'm Julian Prokay, a software engineer passionate about building tools and sharing insights about modern development practices, particularly around AI-assisted coding and efficient software workflows.
+
+## Blog Posts
+
+- [Planning with Claude Desktop, Coding with Claude Code ](https://jprokay.com/post/012-claude-and-claude-code): Using different types of Claude to play to their strengths
+- [Claude Code Custom Slash Commands ](https://jprokay.com/post/011-slash-commands): 3 Custom Slash Commands to orchestrate an end-to-end development life cycle using Claude Code
+- [Remote Agents and You ](https://jprokay.com/post/010-remote-agents): Remote coding agents like Devin are getting a lot of hype. Are they ready for primetime?
+- [Helpful MCP Servers ](https://jprokay.com/post/009-mcp-suggestions): 3 MCP Servers that have made a difference
+- [Enterprise Vibe Coding ](https://jprokay.com/post/008-enterprise-vibes): Ideas on avoiding slop when you are trying to vibe
+- [Reformed AI Skeptic](https://jprokay.com/post/007-on-ai-assistance): AI assistants are changing coding. Is it still worth the skeptism?
+- [Shifting Left ](https://jprokay.com/post/006-shifting-left): AI is shifting the task of engineering towards one of judgement and evaluation. What skills will the engineer of the future need to be successful?
+- [Minimal Viable Blogging ](https://jprokay.com/post/005-mvb): Starting a blog doesn't require Rails, Django, or Astro. You can do it with HTML, CSS, and a bit of Caddy. Start your own Minimal Viable Blog
+- [Sorting files in reverse order ](https://jprokay.com/post/004-sorting-files): Using Sprig and Caddy template functions to render a list of posts in reverse order
+- [Styling code blocks with Chroma ](https://jprokay.com/post/003-styling-code-with-chroma): Setting up CSS with Chroma to render code blocks 
+- [Anatomy of a Post ](https://jprokay.com/post/002-anatomy-of-a-post): Leveraging Caddy's splitFrontMatter to build a feed 
+- [Hello World ](https://jprokay.com/post/001-first-post): Using Caddy templates to generate a link feed ala Simon Willison
+
+## Technical Interests
+
+- AI-assisted development workflows
+- Model Context Protocol (MCP) and AI tool integration
+- Minimalist web architectures
+- Developer productivity and automation
+- Software engineering best practices
+
+## Contact
+
+- [LinkedIn](https://www.linkedin.com/in/julian-prokay/)
+- [GitHub](https://github.com/jprokay)
+- [Bandcamp](https://bandcamp.com/jbeard)
+
+## Optional
+
+- [Homepage](https://jprokay.com/): Personal website and blog
+- [Blog Feed](https://jprokay.com/feed): Complete list of all blog posts

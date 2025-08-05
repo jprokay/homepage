@@ -40,7 +40,7 @@
 
       <loc>https://jprokay.com/post/001-first-post.md</loc>
 
-      <lastmod>2025-04-26</lastmod>
+      <lastmod>2025-04-22</lastmod>
 
       <changefreq>monthly</changefreq>
 
@@ -50,9 +50,20 @@
 
    <url>
 
+      <loc>https://jprokay.com/post/001-first-post</loc>
+
+      <lastmod>2025-04-22</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
       <loc>https://jprokay.com/post/002-anatomy-of-a-post.md</loc>
 
-      <lastmod>2025-04-26</lastmod>
+      <lastmod>2025-04-25</lastmod>
 
       <changefreq>monthly</changefreq>
 
@@ -60,6 +71,17 @@
 
    </url>
 
+   <url>
+
+      <loc>https://jprokay.com/post/002-anatomy-of-a-post</loc>
+
+      <lastmod>2025-04-25</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
    <url>
 
       <loc>https://jprokay.com/post/003-styling-code-with-chroma.md</loc>
@@ -74,7 +96,30 @@
 
    <url>
 
+      <loc>https://jprokay.com/post/003-styling-code-with-chroma</loc>
+
+      <lastmod>2025-04-26</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
       <loc>https://jprokay.com/post/004-sorting-files.md</loc>
+
+      <lastmod>2025-05-03</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+   <url>
+
+      <loc>https://jprokay.com/post/004-sorting-files</loc>
 
       <lastmod>2025-05-03</lastmod>
 
@@ -97,68 +142,20 @@
 
    <url>
 
-      <loc>https://jprokay.com/post/006-shifting-left.md</loc>
-
-      <lastmod>2025-06-02</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.7</priority>
-
-   </url>
-
-   <url>
-
-      <loc>https://jprokay.com/post/001-first-post</loc>
-
-      <lastmod>2025-04-26</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.7</priority>
-
-   </url>
-
-   <url>
-
-      <loc>https://jprokay.com/post/002-anatomy-of-a-post</loc>
-
-      <lastmod>2025-04-26</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.7</priority>
-
-   </url>
-
-   <url>
-
-      <loc>https://jprokay.com/post/003-styling-code-with-chroma</loc>
-
-      <lastmod>2025-04-26</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.7</priority>
-
-   </url>
-
-   <url>
-
-      <loc>https://jprokay.com/post/004-sorting-files</loc>
-
-      <lastmod>2025-05-03</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.7</priority>
-
-   </url>
-   <url>
-
       <loc>https://jprokay.com/post/005-mvb</loc>
 
       <lastmod>2025-05-03</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
+      <loc>https://jprokay.com/post/006-shifting-left.md</loc>
+
+      <lastmod>2025-06-02</lastmod>
 
       <changefreq>monthly</changefreq>
 
@@ -179,15 +176,39 @@
    </url>
    <url>
 
-      <loc>https://jprokay.com/post/007-on-ai-assistance</loc>
+      <loc>https://jprokay.com/post/007-on-ai-assistance.md</loc>
 
-      <lastmod>2025-06-03</lastmod>
+      <lastmod>2025-06-04</lastmod>
 
       <changefreq>monthly</changefreq>
 
       <priority>0.7</priority>
 
    </url>
+
+   <url>
+
+      <loc>https://jprokay.com/post/007-on-ai-assistance</loc>
+
+      <lastmod>2025-06-04</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
+      <loc>https://jprokay.com/post/008-enterprise-vibes.md</loc>
+
+      <lastmod>2025-06-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
    <url>
 
       <loc>https://jprokay.com/post/008-enterprise-vibes</loc>
@@ -201,6 +222,18 @@
    </url>
    <url>
 
+      <loc>https://jprokay.com/post/009-mcp-suggestions.md</loc>
+
+      <lastmod>2025-06-18</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+   <url>
+
       <loc>https://jprokay.com/post/009-mcp-suggestions</loc>
 
       <lastmod>2025-06-18</lastmod>
@@ -212,9 +245,67 @@
    </url>
    <url>
 
+      <loc>https://jprokay.com/post/010-remote-agents.md</loc>
+
+      <lastmod>2025-06-24</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+   <url>
+
       <loc>https://jprokay.com/post/010-remote-agents</loc>
 
       <lastmod>2025-06-24</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
+      <loc>https://jprokay.com/post/011-slash-commands.md</loc>
+
+      <lastmod>2025-07-28</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+   <url>
+
+      <loc>https://jprokay.com/post/011-slash-commands</loc>
+
+      <lastmod>2025-07-28</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+   <url>
+
+      <loc>https://jprokay.com/post/012-claude-and-claude-code.md</loc>
+
+      <lastmod>2025-08-04</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+   <url>
+
+      <loc>https://jprokay.com/post/012-claude-and-claude-code</loc>
+
+      <lastmod>2025-08-04</lastmod>
 
       <changefreq>monthly</changefreq>
 
@@ -225,3 +316,4 @@
 
    <!-- Add new posts manually when you create them -->
 </urlset>
+
