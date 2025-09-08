@@ -6,6 +6,7 @@ I'm Julian Prokay, a software engineer passionate about building tools and shari
 
 ## Blog Posts
 
+- [Finally Understanding Subagents](https://jprokay.com/post/013-finally-understanding-subagents): Creating subagent configurations for specific tasks in Claude Code or Opencode.
 - [Planning with Claude Desktop, Coding with Claude Code ](https://jprokay.com/post/012-claude-and-claude-code): Using different types of Claude to play to their strengths
 - [Claude Code Custom Slash Commands ](https://jprokay.com/post/011-slash-commands): 3 Custom Slash Commands to orchestrate an end-to-end development life cycle using Claude Code
 - [Remote Agents and You ](https://jprokay.com/post/010-remote-agents): Remote coding agents like Devin are getting a lot of hype. Are they ready for primetime?
