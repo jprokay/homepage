@@ -48,8 +48,9 @@ It was time to encode my new found knowledge into a subagent with the help of Op
 The file is large, so I am not going to post it in its entirety in the article, but [you can grab it here.](/public/xstate-implementation-expert.md)
 
 The major takeaway was to provide A LOT more context in the subagent configuration than examples would lead you to believe. Key documents I
-download, convert to markdown, and add to a common location for reference. Everything is encoded as XML tags because [that is supposed to be better]
-(https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags). Plenty of examples and references to prior art in the codebase.
+download, convert to markdown, and add to a common location for reference. Everything is encoded as XML tags because
+[that is supposed to be better](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags).
+Plus, plenty of examples and references to prior art in the codebase.
 
 Now, I can just about one-shot a state machine from a task definition with great tests and structured in a clean way.
 
