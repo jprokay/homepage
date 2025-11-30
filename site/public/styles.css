@@ -401,9 +401,35 @@ pre {
     background: #585b70;
   }
 
+  .callout {
+    border-color: #444;
+    background-color: #1a1a1a;
+  }
+
+  code:not(pre code) {
+    color: #f0a090;
+    background-color: #2a2a2a;
+  }
+
 }
 
 /* Chroma syntax highlighting styles moved to chroma-minimal.css */
+
+/* Callout block */
+.callout {
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border: 1px solid #888;
+  border-radius: 4px;
+  border-left-width: 4px;
+}
+
+/* Inline code */
+code:not(pre code) {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
 
 /* Feed styles */
 .posts-list section.post-item {
@@ -527,6 +553,16 @@ pre {
 
   pre::-webkit-scrollbar-thumb:hover {
     background: #bcc0cc;
+  }
+
+  .callout {
+    border-color: #ccc;
+    background-color: #f5f5f5;
+  }
+
+  code:not(pre code) {
+    color: #9a3030;
+    background-color: #f0f0f0;
   }
 
   /* Chroma syntax highlighting styles moved to chroma-minimal.css */

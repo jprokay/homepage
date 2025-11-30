@@ -28,8 +28,26 @@ for post in $(ls -r "$POSTS_DIR"/*.md); do
         # Extract title from frontmatter
         title=$(grep -m1 "^title:" "$post" | sed 's/title: //')
         
-        # Extract description from frontmatter
-        description=$(grep -m1 "^description:" "$post" | sed 's/description: //')
+        # Extract description from frontmatter (handles multi-line YAML with >)
+        description=$(awk '
+            /^---$/ { in_fm = !in_fm; next }
+            in_fm && /^description:/ {
+                val = substr($0, 13)
+                gsub(/^[ \t]+|[ \t]+$/, "", val)
+                if (val == ">" || val == "|") {
+                    while ((getline line) > 0) {
+                        if (line ~ /^[^ \t]/ || line ~ /^---$/) break
+                        gsub(/^[ \t]+|[ \t]+$/, "", line)
+                        if (result != "") result = result " "
+                        result = result line
+                    }
+                    print result
+                } else {
+                    print val
+                }
+                exit
+            }
+        ' "$post")
         
         # Add entry to llms.txt
         echo "- [$title]($DOMAIN/post/$filename): $description" >> "$LLMS_FILE"

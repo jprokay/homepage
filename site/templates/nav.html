@@ -1,8 +1,8 @@
 <header class="gentle-flex">
   <nav aria-label="Primary">
     <ul>
-      <li><a aria-current={{ if and .Args (gt (len .Args) 0) (eq (index .Args 0) "home") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/">home</a></li>
-      <li><a aria-current={{ if and .Args (gt (len .Args) 0) (eq (index .Args 0) "feed") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/feed">feed</a></li>
+      <li><a aria-current={{ if and .Args (gt (len .Args) 0) (eq (index .Args 0) "feed") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/">feed</a></li>
+      <li><a aria-current={{ if and .Args (gt (len .Args) 0) (eq (index .Args 0) "about") }}{{"page"}}{{else}}{{"false"}}{{end}} class="mono" href="/about">about</a></li>
     </ul>
   </nav>
 </header>

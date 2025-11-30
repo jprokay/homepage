@@ -6,6 +6,7 @@ I'm Julian Prokay, a software engineer passionate about building tools and shari
 
 ## Blog Posts
 
+- [Process update - How I use Agents as of Dec. 2025](https://jprokay.com/post/014-process-update): My process has solidified over the fall into something consistent and repeatable. Even as models change, I have found a lightweight, easy to manage flow with Claude.
 - [Finally Understanding Subagents](https://jprokay.com/post/013-finally-understanding-subagents): Creating subagent configurations for specific tasks in Claude Code or Opencode.
 - [Planning with Claude Desktop, Coding with Claude Code ](https://jprokay.com/post/012-claude-and-claude-code): Using different types of Claude to play to their strengths
 - [Claude Code Custom Slash Commands ](https://jprokay.com/post/011-slash-commands): 3 Custom Slash Commands to orchestrate an end-to-end development life cycle using Claude Code
@@ -16,8 +17,8 @@ I'm Julian Prokay, a software engineer passionate about building tools and shari
 - [Shifting Left ](https://jprokay.com/post/006-shifting-left): AI is shifting the task of engineering towards one of judgement and evaluation. What skills will the engineer of the future need to be successful?
 - [Minimal Viable Blogging ](https://jprokay.com/post/005-mvb): Starting a blog doesn't require Rails, Django, or Astro. You can do it with HTML, CSS, and a bit of Caddy. Start your own Minimal Viable Blog
 - [Sorting files in reverse order ](https://jprokay.com/post/004-sorting-files): Using Sprig and Caddy template functions to render a list of posts in reverse order
-- [Styling code blocks with Chroma ](https://jprokay.com/post/003-styling-code-with-chroma): Setting up CSS with Chroma to render code blocks 
-- [Anatomy of a Post ](https://jprokay.com/post/002-anatomy-of-a-post): Leveraging Caddy's splitFrontMatter to build a feed 
+- [Styling code blocks with Chroma ](https://jprokay.com/post/003-styling-code-with-chroma): Setting up CSS with Chroma to render code blocks
+- [Anatomy of a Post ](https://jprokay.com/post/002-anatomy-of-a-post): Leveraging Caddy's splitFrontMatter to build a feed
 - [Hello World ](https://jprokay.com/post/001-first-post): Using Caddy templates to generate a link feed ala Simon Willison
 
 ## Technical Interests
