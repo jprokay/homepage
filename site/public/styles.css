@@ -297,6 +297,7 @@ a:hover>svg>path {
 
 header {
   grid-column: 1 / 4;
+  animation: none;
 }
 
 .left-side {
