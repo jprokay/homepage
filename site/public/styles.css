@@ -17,22 +17,16 @@ nav ul {
   li a {
     text-decoration: none;
     padding: 0.2rem 0;
-    position: relative;
   }
-  
-  li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: currentColor;
-    transition: width 0.3s ease;
+
+  li a:hover {
+    text-decoration: underline;
   }
-  
-  li a:hover::after {
-    width: 100%;
+
+  li a[aria-current="page"],
+  li a[aria-current="page"]:hover {
+    text-decoration: underline;
+    cursor: default;
   }
 }
 
@@ -303,6 +297,7 @@ a:hover>svg>path {
 
 header {
   grid-column: 1 / 4;
+  animation: none;
 }
 
 .left-side {
