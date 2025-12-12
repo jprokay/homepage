@@ -358,6 +358,29 @@
       <priority>0.7</priority>
 
    </url>
+   <url>
+
+      <loc>https://jprokay.com/post/015-devenv.md</loc>
+
+      <lastmod>2025-12-12</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
+
+   <url>
+
+      <loc>https://jprokay.com/post/015-devenv</loc>
+
+      <lastmod>2025-12-12</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.7</priority>
+
+   </url>
 
 
    <!-- Add new posts manually when you create them -->
