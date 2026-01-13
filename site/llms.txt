@@ -6,6 +6,7 @@ I'm Julian Prokay, a software engineer passionate about building tools and shari
 
 ## Blog Posts
 
+- [Working on the Go with Terminus, Tailscale, and Claude](https://jprokay.com/post/017-mobile-dev-workflow): A look at using Terminus, Tailscale, and Claude Code to enable productive development sessions from anywhere.
 - [Looking back on a year of change](https://jprokay.com/post/016-reflections-on-2025): 2025 has been a transformative year both personally and professionally. Let's reflect and look forward to 2026
 - [devenv - The best tool for the job](https://jprokay.com/post/015-devenv): You start a new project, you open up the README, and begin going through all the installation instructions. Oops someone forgot to document a dependency! What if you could get rid of this problem entirely? What if setting up a project just required you to open it up?
 - [Process update - How I use Agents as of Dec. 2025](https://jprokay.com/post/014-process-update): My process has solidified over the fall into something consistent and repeatable. Even as models change, I have found a lightweight, easy to manage flow with Claude.
