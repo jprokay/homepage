@@ -29,16 +29,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-  <!-- Inline critical CSS -->
-  {{ $criticalCSS := readFile "./public/critical.css" }}
-  <style>{{ $criticalCSS }}</style>
-  <!-- Async load non-critical CSS -->
-  <link rel="preload" href="public/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="public/chroma-minimal.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="public/styles.css">
-    <link rel="stylesheet" href="public/chroma-minimal.css">
-  </noscript>
+  <!-- Stylesheets - small enough to load directly (compressed ~4KB total) -->
+  <link rel="stylesheet" href="/public/styles.css">
+  <link rel="stylesheet" href="/public/chroma-minimal.css">
  <title>jprokay</title>
 </head>
 
