@@ -222,8 +222,24 @@ svg {
   width: 2.5rem;
 }
 
+.social-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 path {
   transition: fill 0.3s ease-out;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 a:hover>svg>path {
