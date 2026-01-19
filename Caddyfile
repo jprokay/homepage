@@ -29,6 +29,10 @@ header {
     Permissions-Policy "geolocation=(), microphone=(), camera=()"
 }
 
+# Redirect .md URLs to clean URLs (fixes duplicate content)
+@postmd path_regexp postmd ^/post/(.+)\.md$
+redir @postmd /post/{re.postmd.1} permanent
+
 # Individual post routes
 @post path /post/*
 handle @post {

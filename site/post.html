@@ -34,7 +34,8 @@
     <meta property="og:title" content="{{ $parsed.Meta.title }}" />
     <meta property="og:description" content="{{ $parsed.Meta.description | default `Blog post by Julian Prokay` }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://jprokay.com/post/{{ last $postPath }}" />
+    <meta property="og:url" content="https://jprokay.com/post/{{ trimSuffix ".md" $postFile }}" />
+    <link rel="canonical" href="https://jprokay.com/post/{{ trimSuffix ".md" $postFile }}" />
     <meta property="og:image" content="https://jprokay.com/public/me.jpg" />
     <meta property="og:site_name" content="jprokay" />
     <meta property="article:published_time" content="{{ $parsed.Meta.date }}" />
