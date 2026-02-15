@@ -73,9 +73,9 @@ render output from the CLI tool. This helps with composability and allows me to 
 Where it gets really useful is adding in a `/task` command to render my task list and then being able to view each
 task description. My tasks are now a part of my interface. Leaving my session is no longer necessary.
 
-[Example Task List with `/task`](/public/pic-task-list.png)
+![Example Task List with `/task`](/public/pic-task-list.png)
 
-[Example Task from the list](/public/pic-task.png)
+![Example Task from the list](/public/pic-task.png)
 
 ### Build it Yourself
 
@@ -100,4 +100,4 @@ even if I am not the one coding it, I understand better how the system works and
 Plus it is extremely fun. There is something satisfying about typing `/ops` and getting one screen of the most important
 information.
 
-[Uninteresting ops output - a good thing](/public/pi-ops.png)
+![Uninteresting ops output - a good thing](/public/pi-ops.png)
