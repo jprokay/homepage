@@ -73,9 +73,9 @@ render output from the CLI tool. This helps with composability and allows me to 
 Where it gets really useful is adding in a `/task` command to render my task list and then being able to view each
 task description. My tasks are now a part of my interface. Leaving my session is no longer necessary.
 
-![Example Task List with `/task`](/public/pic-task-list.png)
+![Example Task List with `/task`](/public/pi-task-list.png)
 
-![Example Task from the list](/public/pic-task.png)
+![Example Task from the list](/public/pi-task.png)
 
 ### Build it Yourself
 

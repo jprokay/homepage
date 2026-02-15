@@ -63,6 +63,12 @@ pre {
     font-family: var(--default-font);
   }
 
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
   blockquote {
     border-left: 2px solid white;
 
